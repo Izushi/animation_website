@@ -2,18 +2,62 @@ import { motion, spring } from "framer-motion";
 
 function App() {
   return (
-    <div className="h-screen flex items-center justify-center">
-      <motion.div
-        initial={{ x: -100 }}
-        animate={{ x: 100 }}
+    <main className="h-screen bg-slate-900">
+      <div className="container mx-auto">
+        {/* header */}
+        <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
         transition={{
-          type: "spring",
-          duration: 2,
-          delay: 1,
-          stiffness: 200
+          type: 'spring',
+          duration: 1,
+          delay: 0.5,
+          stiffness: 130,
         }}
-        className="w-28 h-28 bg-red-600"></motion.div>
-    </div>
+        className="flex text-white justify-between items-center h-16">
+        <span className="font-bold text-2xl">-Framer Website-</span>
+        
+        <nav>
+          <ul className="flex items-center gap-4">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        </motion.header>
+        {/* hero */}
+        <section className="lg:py-48">
+          <div className="flex items-center justify-between">
+            {/* left */}
+            <div>
+              <h2 className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]">
+                Framer 3D Website
+              </h2>
+              <p className="text-white lg:max-w-[40rem] lg:text-5xl font-semibold">
+                The <span className="text-orange-500">next</span> generation
+              </p>
+              <div className="flex item-center gap-4">
+                <button className="px-6 py-3 rounded-md border-2 my-4 hover:translate-y-1 duration-150">
+                  <span className="font-bold text-white">More Details</span>
+                </button>
+                <button className="px-6 py-3 rounded-md border-2 my-4  border-orange-500 hover:translate-y-1 duration-150">
+                  <span className="font-bold text-orange-500">Samples</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 3D model */}
+            <div></div>
+          </div>
+        </section>
+      </div>
+    </main>
   )
 }
 
