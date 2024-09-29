@@ -80,12 +80,14 @@ function App() {
             </div>
 
             {/* 3D model */}
-            <div></div>
+            <div>
+              <ThreeModel />
+            </div>
           </div>
         </section>
       </div>
     </main>
-  )
-}
+  );
+};
 
 export default App
