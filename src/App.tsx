@@ -1,4 +1,5 @@
 import { motion, spring } from "framer-motion";
+import ThreeModel from "./components/ThreeModel";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         }}
         className="flex text-white justify-between items-center h-16">
         <span className="font-bold text-2xl">-Framer Website-</span>
-        
+
         <nav>
           <ul className="flex items-center gap-4">
             <li>
@@ -32,7 +33,7 @@ function App() {
         </nav>
         </motion.header>
         {/* hero */}
-        <section className="lg:py-48">
+        <section className="lg:py-40">
           <div className="flex items-center justify-between">
             {/* left */}
             <div className="space-y-3">
@@ -80,7 +81,7 @@ function App() {
             </div>
 
             {/* 3D model */}
-            <div>
+            <div className="w-7/12">
               <ThreeModel />
             </div>
           </div>
