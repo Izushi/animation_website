@@ -16,18 +16,18 @@ function App() {
           stiffness: 130,
         }}
         className="flex text-white justify-between items-center h-16">
-        <span className="font-bold text-2xl">-Framer Website-</span>
+        <span className="font-bold text-3xl">My Portfolio Site</span>
 
         <nav>
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-4 text-3xl">
             <li>
-              <a href="/">Home</a>
+              <a href="/" className="hover:text-teal-300 transition-colors duration-300">Home</a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#skills" className="hover:text-teal-300 transition-colors duration-300">Skills</a>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <a href="#contact" className="hover:text-teal-300 transition-colors duration-300">Contact</a>
             </li>
           </ul>
         </nav>
@@ -36,7 +36,7 @@ function App() {
         <section className="lg:py-40">
           <div className="flex items-center justify-between">
             {/* left */}
-            <div className="space-y-3">
+            <div className="space-y-5">
               <motion.h2
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -47,7 +47,7 @@ function App() {
                 stiffness: 130,
               }}
               className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]">
-                Framer 3D Website
+                I'm a <span className="text-teal-300">Web Developer</span>
               </motion.h2>
               <motion.p
               initial={{ y: -100, opacity: 0 }}
@@ -58,8 +58,8 @@ function App() {
                 delay: 0.8,
                 stiffness: 130,
               }}
-              className="text-white lg:max-w-[40rem] lg:text-5xl font-semibold">
-                The <span className="text-orange-500">next</span> generation
+              className="text-white lg:max-w-[40rem] lg:text-4xl font-semibold">
+                Coding the <span className="text-teal-300">Future</span> , One Line at a Time
               </motion.p>
               <motion.div
               initial={{ y: -100, opacity: 0 }}
@@ -71,11 +71,11 @@ function App() {
                 stiffness: 130,
               }}
               className="flex item-center gap-4">
-                <button className="px-6 py-3 rounded-md border-2 my-4 hover:translate-y-1 duration-150">
-                  <span className="font-bold text-white">More Details</span>
+                <button className="px-6 py-4 rounded-md border-2 my-4 hover:translate-y-1 duration-150">
+                  <span className="font-bold text-white text-3xl">More Details</span>
                 </button>
-                <button className="px-6 py-3 rounded-md border-2 my-4  border-orange-500 hover:translate-y-1 duration-150">
-                  <span className="font-bold text-orange-500">Samples</span>
+                <button className="px-6 py-4 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150">
+                  <span className="font-bold text-teal-300 text-3xl">Samples</span>
                 </button>
               </motion.div>
             </div>

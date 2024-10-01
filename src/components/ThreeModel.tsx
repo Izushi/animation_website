@@ -28,17 +28,17 @@ const ThreeModel = () => {
       animate={{ x: 0, opacity: 1 }}
       transition={{
         type: 'spring',
-        duration: 0.8,
+        duration: 2.0,
         delay: 0.9,
-        stiffness: 200,
+        stiffness: 100,
       }}
       className='w-full h-[700px]'>
-      <Canvas camera={{ position: [0, 0, 30], fov: 50 }}>
+      <Canvas camera={{ position: [0, 0, 27], fov: 50 }}>
         <ambientLight intensity={3}/>
         <Model
           url="/src/assets/models/scene.gltf"
-          scale={2.3} position={[-1.1, -2, 1.4]}
-          rotation={[Math.PI / 10, -Math.PI / 10, 0]}
+          scale={2.3} position={[-0.4, -3, 1.4]}
+          rotation={[Math.PI / 7, -Math.PI / 10, 0]}
         />
         <OrbitControls enableZoom={false} />
       </Canvas>
