@@ -30,7 +30,7 @@ const ThreeModel = () => {
         type: 'spring',
         duration: 2.0,
         delay: 0.9,
-        stiffness: 100,
+        stiffness: 200,
       }}
       className='w-full h-[700px]'>
       <Canvas camera={{ position: [0, 0, 27], fov: 50 }}>
