@@ -3,14 +3,23 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
-const Model = ({ url, scale, position, rotation }: { url: string; scale: number; position: number[]; rotation: number[] }) => {
-  const groupRef = useRef(null);
+const Model = ({
+  url,
+  scale,
+  position,
+  rotation
+}: {
+  url: string;
+  scale: number;
+  position: number[];
+  rotation: number[];
+}) => {
   const { scene } = useGLTF(url);
+  const groupRef = useRef(null);
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.8;
-      // groupRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+      groupRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.25;
     }
   });
 
@@ -24,22 +33,22 @@ const Model = ({ url, scale, position, rotation }: { url: string; scale: number;
 const ThreeModel = () => {
   return (
     <motion.div
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{
         type: 'spring',
-        duration: 2.0,
+        duration: 0,
         delay: 0.9,
         stiffness: 200,
       }}
-      className='w-full h-[700px]'>
-      <Canvas camera={{ position: [0, 0, 27], fov: 50 }}>
+    className='w-full h-[700px]'>
+      <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
         <ambientLight intensity={3}/>
         <Model
-          url="/src/assets/models/scene.gltf"
-          scale={2.3} position={[-0.4, -3, 1.4]}
-          rotation={[Math.PI / 7, -Math.PI / 10, 0]}
-        />
+        url="/src/assets/models/scene.gltf"
+        scale={0.8}
+        position={[0, -1.2, 1]}
+        rotation={[Math.PI / 7, -Math.PI / 10, 0]} />
         <OrbitControls enableZoom={false} />
       </Canvas>
     </motion.div>
