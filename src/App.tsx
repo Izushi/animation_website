@@ -3,7 +3,7 @@ import ThreeModel from "./components/ThreeModel";
 
 function App() {
   return (
-    <main className="h-screen bg-slate-900">
+    <main className="bg-slate-900">
       <div className="container mx-auto">
         {/* header */}
         <motion.header
@@ -15,25 +15,27 @@ function App() {
           delay: 0.5,
           stiffness: 130,
         }}
-        className="flex text-white justify-between items-center h-16">
-        <span className="font-bold text-3xl">My Portfolio Site</span>
+        className="fixed top-0 left-0 right-0  w-full text-white z-10">
+          <div className="container mx-auto flex justify-between items-center h-16">
+            <span className="font-bold text-3xl">My Portfolio Site</span>
 
-        <nav>
-          <ul className="flex items-center gap-4 text-3xl">
-            <li>
-              <a href="/" className="hover:text-teal-300 transition-colors duration-300">Home</a>
-            </li>
-            <li>
-              <a href="#skills" className="hover:text-teal-300 transition-colors duration-300">Skills</a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-teal-300 transition-colors duration-300">Contact</a>
-            </li>
-          </ul>
-        </nav>
+            <nav>
+              <ul className="flex items-center gap-4 text-3xl">
+                <li>
+                  <a href="/" className="hover:text-teal-300 transition-colors duration-300">Home</a>
+                </li>
+                <li>
+                  <a href="#skills" className="hover:text-teal-300 transition-colors duration-300">Skills</a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:text-teal-300 transition-colors duration-300">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </motion.header>
         {/* hero */}
-        <section className="lg:py-40">
+        <section className="lg:py-40 pt-16">
           <div className="flex items-center justify-between">
             {/* left */}
             <div className="space-y-5">
@@ -84,6 +86,16 @@ function App() {
             <div className="w-7/12">
               <ThreeModel />
             </div>
+          </div>
+        </section>
+
+        {/* about */}
+        <section id="about" className="py-20 bg-slate-900">
+          <div className="container mx-auto">
+            <h2 className="text-4xl font-bold text-teal-300 mb-4">About Me</h2>
+            <p className="text-lg text-white">
+              I am a passionate web developer with experience in creating dynamic and user-friendly web applications.
+            </p>
           </div>
         </section>
       </div>
