@@ -1,14 +1,20 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import ThreeModel from "./components/ThreeModel";
 import IconSliderModel from "./components/IconSliderModel";
-import { FaGithub, FaDev } from "react-icons/fa";
+import { FaGithub, FaDev, FaBars, FaTimes } from "react-icons/fa";
 
 function App() {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const isHeroInView = useInView(ref2);
   const isInView = useInView(ref);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <main className="bg-slate-900">
@@ -23,12 +29,12 @@ function App() {
             delay: 0.5,
             stiffness: 130,
           }}
-          className="fixed top-0 left-0 right-0  w-full text-white z-10"
+          className="fixed top-0 left-0 right-0 w-full text-white z-50 bg-slate-900"
         >
-          <div className="container mx-auto flex justify-between items-center h-16">
+          <div className="container mx-auto flex justify-between items-center h-16 px-4 md:px-0">
             <span className="font-bold text-3xl">My Portfolio Site</span>
 
-            <nav>
+            <nav className="hidden md:flex">
               <ul className="flex items-center gap-4 text-3xl">
                 <li>
                   <a href="#home" className="hover:text-teal-300 transition-colors duration-300">Home</a>
@@ -41,47 +47,73 @@ function App() {
                 </li>
               </ul>
             </nav>
+            {/* toggle menu */}
+            <div className="md:hidden">
+              <button onClick={toggleMenu} className="text-3xl">
+                {isMenuOpen ? <FaTimes /> : <FaBars />}
+              </button>
+            </div>
           </div>
+
+          {/* mobile menu */}
+          {isMenuOpen && (
+            <nav className="md:hidden bg-slate-900">
+              <ul className="flex flex-col items-center gap-4 text-3xl py-4">
+                <li>
+                  <a href="#home" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>Home</a>
+                </li>
+                <li>
+                  <a href="#about" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>About</a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
+                </li>
+              </ul>
+            </nav>
+          )}
         </motion.header>
         {/* hero */}
-        <section id="home" className="lg:py-40 pt-16">
-          <div className="flex items-center justify-between">
+        <section id="home" className="pb-20 pt-40">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             {/* left */}
-            <div className="space-y-5" ref={ref2}>
+            <div className="space-y-5 text-center lg:text-left" ref={ref2}>
               <motion.h2
-              initial={{ y: -100, opacity: 0 }}
-              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-              transition={{
-                type: 'spring',
-                duration: 1,
-                delay: 0.5,
-                stiffness: 130,
-              }}
-              className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]">
+                initial={{ y: -100, opacity: 0 }}
+                animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  duration: 1,
+                  delay: 0.5,
+                  stiffness: 130,
+                }}
+                className="text-white lg:text-9xl md:text-8xl text-6xl font-bold lg:max-w-[40rem]"
+              >
                 I'm a <span className="text-teal-300">Web Developer</span>
               </motion.h2>
               <motion.p
-              initial={{ y: -100, opacity: 0 }}
-              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-              transition={{
-                type: 'spring',
-                duration: 1,
-                delay: 0.8,
-                stiffness: 130,
-              }}
-              className="text-white lg:max-w-[40rem] lg:text-4xl font-semibold">
+                initial={{ y: -100, opacity: 0 }}
+                animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  duration: 1,
+                  delay: 0.8,
+                  stiffness: 130,
+                }}
+                className="text-white lg:max-w-[40rem] lg:text-4xl md:text-3xl text-2xl font-semibold"
+              >
                 Coding the <span className="text-teal-300">Future</span> , One Line at a Time
               </motion.p>
               <motion.div
-              initial={{ y: -100, opacity: 0 }}
-              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
-              transition={{
-                type: 'spring',
-                duration: 1,
-                delay: 0.9,
-                stiffness: 130,
-              }}
-              className="flex item-center gap-4">
+                initial={{ y: -100, opacity: 0 }}
+                animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  duration: 1,
+                  delay: 0.9,
+                  stiffness: 130,
+                }}
+                className="flex flex-row items-center gap-4 justify-center"
+              >
                 <button className="px-6 py-4 rounded-md border-2 my-4 hover:translate-y-1 duration-150">
                   <span className="font-bold text-white text-3xl">Resume</span>
                 </button>
@@ -92,7 +124,7 @@ function App() {
             </div>
 
             {/* 3D model */}
-            <div className="w-7/12">
+            <div className="w-full lg:w-7/12 mt-10 lg:mt-0 justify-center flex">
               <ThreeModel />
             </div>
           </div>
@@ -102,9 +134,9 @@ function App() {
         <section id="about" className="py-20 bg-slate-900" ref={ref}>
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-teal-300 mb-4">About Me</h2>
-            <div className="flex items-center">
-              <img src="../public/images/my_profile.JPG" alt="Example" className="w-1/3 rounded-lg shadow-lg mr-4" />
-              <div>
+            <div className="flex flex-col md:flex-row items-center">
+              <img src="../public/images/my_profile.JPG" alt="Example" className="w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-4" />
+              <div className="text-center lg:text-left">
                 <motion.h2
                   initial={{ y: -100, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
@@ -114,7 +146,7 @@ function App() {
                     delay: 0.5,
                     stiffness: 130,
                   }}
-                  className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]"
+                  className="text-white lg:text-9xl md:text-8xl text-6xl font-bold lg:max-w-[40rem]"
                 >
                   Hi, I'm <span className="text-teal-300">Daz</span>
                 </motion.h2>
@@ -127,7 +159,7 @@ function App() {
                     delay: 0.8,
                     stiffness: 130,
                   }}
-                  className="text-white lg:text-2xl font-semibold mt-10">
+                  className="text-white lg:text-2xl text-xl font-semibold mt-10">
                     I am a dedicated software developer with extensive experience in back-end and front-end web development.
                 </motion.p>
                 <motion.div
@@ -158,7 +190,7 @@ function App() {
         <section id="skills" className="py-20 bg-slate-900">
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-teal-300 mb-4">Skills</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
                 <h3 className="text-2xl font-bold text-white">Front-end</h3>
                 <ul className="text-white">
@@ -188,7 +220,7 @@ function App() {
         <section id="contact" className="py-20 bg-slate-900">
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-teal-300 mb-4">Contact</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
                 <h3 className="text-2xl font-bold text-white">Email</h3>
                 <p className="text-white">

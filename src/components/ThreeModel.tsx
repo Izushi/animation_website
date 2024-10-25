@@ -33,19 +33,31 @@ const Model = ({
 const ThreeModel = () => {
   const ref = useRef(null);
   const is3DInView = useInView(ref);
-  const [isMounted, setIsMounted] = useState(false);
+  const [canvasSize, setCanvasSize] = useState({width: '100%', height: '700px'});
 
   useEffect(() => {
-    setIsMounted(true);
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCanvasSize({ width: '400px', height: '400px' });
+      } else if (window.innerWidth < 1024) {
+        setCanvasSize({ width: '400px', height: '400px' });
+      } else {
+        setCanvasSize({ width: '600px', height: '600px' });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <motion.div
-      // initial={{ y: -100, opacity: 0 }}
-      // animate={{ y: 0, opacity: 1 }}
       ref={ref}
       initial={{ y: -100, opacity: 0 }}
-      // animate={(is3DInView || isMounted) ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
       animate={is3DInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
       transition={{
         type: 'spring',
@@ -53,7 +65,7 @@ const ThreeModel = () => {
         delay: 0.9,
         stiffness: 200,
       }}
-      className='w-full h-[700px]'
+      style={{ width: canvasSize.width, height: canvasSize.height }}
     >
       <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
         <ambientLight intensity={3}/>
