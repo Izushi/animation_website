@@ -1,22 +1,30 @@
-import { motion, spring } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from 'react';
 import ThreeModel from "./components/ThreeModel";
 import IconSliderModel from "./components/IconSliderModel";
+import { FaGithub, FaDev } from "react-icons/fa";
 
 function App() {
+  const ref = useRef(null);
+  const ref2 = useRef(null);
+  const isHeroInView = useInView(ref2);
+  const isInView = useInView(ref);
+
   return (
     <main className="bg-slate-900">
       <div className="container mx-auto">
         {/* header */}
         <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{
-          type: 'spring',
-          duration: 1,
-          delay: 0.5,
-          stiffness: 130,
-        }}
-        className="fixed top-0 left-0 right-0  w-full text-white z-10">
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            type: 'spring',
+            duration: 1,
+            delay: 0.5,
+            stiffness: 130,
+          }}
+          className="fixed top-0 left-0 right-0  w-full text-white z-10"
+        >
           <div className="container mx-auto flex justify-between items-center h-16">
             <span className="font-bold text-3xl">My Portfolio Site</span>
 
@@ -39,10 +47,10 @@ function App() {
         <section id="home" className="lg:py-40 pt-16">
           <div className="flex items-center justify-between">
             {/* left */}
-            <div className="space-y-5">
+            <div className="space-y-5" ref={ref2}>
               <motion.h2
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: -100, opacity: 0 }}
+              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
               transition={{
                 type: 'spring',
                 duration: 1,
@@ -54,7 +62,7 @@ function App() {
               </motion.h2>
               <motion.p
               initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
               transition={{
                 type: 'spring',
                 duration: 1,
@@ -66,7 +74,7 @@ function App() {
               </motion.p>
               <motion.div
               initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
               transition={{
                 type: 'spring',
                 duration: 1,
@@ -75,7 +83,7 @@ function App() {
               }}
               className="flex item-center gap-4">
                 <button className="px-6 py-4 rounded-md border-2 my-4 hover:translate-y-1 duration-150">
-                  <span className="font-bold text-white text-3xl">More Details</span>
+                  <span className="font-bold text-white text-3xl">Resume</span>
                 </button>
                 <button className="px-6 py-4 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150">
                   <span className="font-bold text-teal-300 text-3xl">Samples</span>
@@ -91,27 +99,28 @@ function App() {
         </section>
 
         {/* About me */}
-        <section id="about" className="py-20 bg-slate-900">
+        <section id="about" className="py-20 bg-slate-900" ref={ref}>
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-teal-300 mb-4">About Me</h2>
             <div className="flex items-center">
               <img src="../public/images/my_profile.JPG" alt="Example" className="w-1/3 rounded-lg shadow-lg mr-4" />
               <div>
                 <motion.h2
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  type: 'spring',
-                  duration: 1,
-                  delay: 0.5,
-                  stiffness: 130,
-                }}
-                className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]">
+                  initial={{ y: -100, opacity: 0 }}
+                  animate={isInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                  transition={{
+                    type: 'spring',
+                    duration: 1,
+                    delay: 0.5,
+                    stiffness: 130,
+                  }}
+                  className="text-white lg:text-9xl md:text-8xl font-bold lg:max-w-[40rem]"
+                >
                   Hi, I'm <span className="text-teal-300">Daz</span>
                 </motion.h2>
                 <motion.p
                   initial={{ y: -100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  animate={isInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
                   transition={{
                     type: 'spring',
                     duration: 1,
@@ -121,6 +130,25 @@ function App() {
                   className="text-white lg:text-2xl font-semibold mt-10">
                     I am a dedicated software developer with extensive experience in back-end and front-end web development.
                 </motion.p>
+                <motion.div
+                  initial={{ y: -100, opacity: 0 }}
+                  animate={isInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                  transition={{
+                    type: 'spring',
+                    duration: 1,
+                    delay: 0.9,
+                    stiffness: 130,
+                  }}
+                  className="flex item-center gap-8 mt-10 justify-center items-center">
+                  <a href="https://github.com/Izushi" target="_blank" rel="noopener noreferrer" className="px-6 py-4 rounded-md border-2 my-4 hover:translate-y-1 duration-150 flex items-center gap-2">
+                    <FaGithub className="w-8 h-8" style={{ color: "white" }}/>
+                    <span className="font-bold text-white text-3xl">GitHub</span>
+                  </a>
+                  <a href="https://dev.to/izushi" target="_blank" rel="noopener noreferrer" className="px-6 py-4 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150 flex items-center gap-2">
+                    <FaDev className="w-8 h-8" style={{ color: "#5EEAD3" }}/>
+                    <span className="font-bold text-teal-300 text-3xl">Dev.to</span>
+                  </a>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -154,6 +182,28 @@ function App() {
             </div>
           </div>
           <IconSliderModel/>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="py-20 bg-slate-900">
+          <div className="container mx-auto">
+            <h2 className="text-4xl font-bold text-teal-300 mb-4">Contact</h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold text-white">Email</h3>
+                <p className="text-white">
+                  <a href="mailto:
+                  example@example.com" className="hover:text-teal-300 transition-colors duration-300">example@example.com</a>
+                </p>
+              </div>
+              <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold text-white">Phone</h3>
+                <p className="text-white">
+                <a href="tel:+1234567890" className="hover:text-teal-300 transition-colors duration-300">+1 (236) 000-0000</a>
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* footer */}
