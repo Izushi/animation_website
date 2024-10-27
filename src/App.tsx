@@ -73,7 +73,7 @@ function App() {
           )}
         </motion.header>
         {/* hero */}
-        <section id="home" className="pb-20 pt-40">
+        <section id="home" className="py-40">
           <div className="flex flex-col md:flex-row items-center justify-between">
             {/* left */}
             <div className="space-y-5 text-center lg:text-left" ref={ref2}>
