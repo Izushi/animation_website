@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from 'react';
 import ThreeModel from "./components/ThreeModel";
 import IconSliderModel from "./components/IconSliderModel";
-import { FaGithub, FaDev, FaBars, FaTimes, FaBriefcase } from "react-icons/fa";
+import { FaGithub, FaDev, FaBars, FaTimes } from "react-icons/fa";
 
 function App() {
   const ref = useRef(null);
