@@ -7,8 +7,8 @@ import { FaGithub, FaDev, FaBars, FaTimes } from "react-icons/fa";
 function App() {
   const ref = useRef(null);
   const ref2 = useRef(null);
-  const isHeroInView = useInView(ref2);
   const isInView = useInView(ref);
+  const isHeroInView = useInView(ref2);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -35,12 +35,18 @@ function App() {
             <span className="font-bold text-3xl">My Portfolio Site</span>
 
             <nav className="hidden md:flex">
-              <ul className="flex items-center gap-4 text-3xl">
+              <ul className="flex items-center gap-4 text-2xl">
                 <li>
                   <a href="#home" className="hover:text-teal-300 transition-colors duration-300">Home</a>
                 </li>
                 <li>
                   <a href="#about" className="hover:text-teal-300 transition-colors duration-300">About</a>
+                </li>
+                <li>
+                  <a href="#work" className="hover:text-teal-300 transition-colors duration-300">Experience</a>
+                </li>
+                <li>
+                  <a href="#skills" className="hover:text-teal-300 transition-colors duration-300">Skills</a>
                 </li>
                 <li>
                   <a href="#contact" className="hover:text-teal-300 transition-colors duration-300">Contact</a>
@@ -64,6 +70,12 @@ function App() {
                 </li>
                 <li>
                   <a href="#about" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>About</a>
+                </li>
+                <li>
+                  <a href="#work" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>Experience</a>
+                </li>
+                <li>
+                  <a href="#skills" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>Skills</a>
                 </li>
                 <li>
                   <a href="#contact" className="hover:text-teal-300 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
@@ -118,7 +130,7 @@ function App() {
                   <span className="font-bold text-white text-3xl">Resume</span>
                 </button>
                 <button className="px-6 py-4 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150">
-                  <span className="font-bold text-teal-300 text-3xl">Samples</span>
+                  <span className="font-bold text-teal-300 text-3xl">Projects</span>
                 </button>
               </motion.div>
             </div>
@@ -133,7 +145,7 @@ function App() {
         {/* About me */}
         <section id="about" className="py-20 bg-slate-900" ref={ref}>
           <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-teal-300 mb-4">About Me</h2>
+            <h2 className="text-4xl font-bold text-teal-300 mb-4">About</h2>
             <div className="flex flex-col md:flex-row items-center">
               <img src="../public/images/my_profile.JPG" alt="Example" className="w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-4" />
               <div className="text-center lg:text-left">
@@ -182,6 +194,22 @@ function App() {
                   </a>
                 </motion.div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* experience */}
+        <section id="work" className="py-20 bg-slate-900">
+          <div className="container mx-auto">
+              <h2 className="text-4xl font-bold text-teal-300 mb-4">Experience</h2>
+            <div className="bg-slate-800 p-8 rounded-lg shadow-lg">
+              <h3 className="text-white lg:text-8xl md:text-8xl text-6xl font-bold mb-4">Web Developer</h3>
+              <p className="text-teal-300 lg:text-2xl text-xl font-semibold mb-6">
+                Dec 2021 - Jun 2024
+              </p>
+              <p className="text-white lg:text-2xl text-xl font-semibold mb-4">
+                I developed a web service for public gambling. I was involved in the design, development, and operation of both the business administration site and the user site, mainly using the LAMP stack to develop the RESTful API.
+              </p>
             </div>
           </div>
         </section>
