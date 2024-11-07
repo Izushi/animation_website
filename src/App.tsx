@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import ThreeModel from "./components/ThreeModel";
 import IconSliderModel from "./components/IconSliderModel";
 import { FaGithub, FaDev, FaBars, FaTimes } from "react-icons/fa";
+import SocialLinksProfileModel from "./components/SocialLinksProfileModel";
 
 function App() {
   const ref = useRef(null);
@@ -88,7 +89,7 @@ function App() {
         <section id="home" className="py-40">
           <div className="flex flex-col md:flex-row items-center justify-between">
             {/* left */}
-            <div className="space-y-5 text-center lg:text-left" ref={ref2}>
+            <div className="space-y-5 text-center" ref={ref2}>
               <motion.h2
                 initial={{ y: -100, opacity: 0 }}
                 animate={isHeroInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
@@ -98,7 +99,7 @@ function App() {
                   delay: 0.5,
                   stiffness: 130,
                 }}
-                className="text-white lg:text-9xl md:text-8xl text-6xl font-bold lg:max-w-[40rem]"
+                className="text-white xl:text-9xl lg:text-8xl md:text-7xl text-6xl font-bold lg:max-w-[40rem]"
               >
                 I'm a <span className="text-teal-300">Web Developer</span>
               </motion.h2>
@@ -111,7 +112,7 @@ function App() {
                   delay: 0.8,
                   stiffness: 130,
                 }}
-                className="text-white lg:max-w-[40rem] lg:text-4xl md:text-3xl text-2xl font-semibold"
+                className="text-white lg:max-w-[40rem] md:text-3xl text-2xl font-semibold"
               >
                 Coding the <span className="text-teal-300">Future</span> , One Line at a Time
               </motion.p>
@@ -136,7 +137,7 @@ function App() {
             </div>
 
             {/* 3D model */}
-            <div className="w-full lg:w-7/12 mt-10 lg:mt-0 justify-center flex">
+            <div className="w-full lg:w-7/12 mt-10 lg:mt-0">
               <ThreeModel />
             </div>
           </div>
@@ -144,11 +145,13 @@ function App() {
 
         {/* About me */}
         <section id="about" className="py-20 bg-slate-900" ref={ref}>
-          <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-teal-300 mb-4">About</h2>
-            <div className="flex flex-col md:flex-row items-center">
-              <img src="../public/images/my_profile.JPG" alt="Example" className="w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-4" />
-              <div className="text-center lg:text-left">
+          <div className="container mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="text-center lg:w-1/3 md:w-1/3">
+                <SocialLinksProfileModel />
+              </div>
+              <div className="text-center w-2/3">
                 <motion.h2
                   initial={{ y: -100, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
@@ -158,9 +161,9 @@ function App() {
                     delay: 0.5,
                     stiffness: 130,
                   }}
-                  className="text-white lg:text-9xl md:text-8xl text-6xl font-bold lg:max-w-[40rem]"
+                  className="text-center text-white xl:text-9xl lg:text-8xl md:text-7xl text-6xl font-bold"
                 >
-                  Hi, I'm <span className="text-teal-300">Daz</span>
+                  Hi, I'm <span className="text-teal-300">Daichi</span>
                 </motion.h2>
                 <motion.p
                   initial={{ y: -100, opacity: 0 }}
