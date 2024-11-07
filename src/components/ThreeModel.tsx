@@ -37,12 +37,12 @@ const ThreeModel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCanvasSize({ width: '400px', height: '400px' });
-      } else if (window.innerWidth < 1024) {
-        setCanvasSize({ width: '400px', height: '400px' });
-      } else {
-        setCanvasSize({ width: '600px', height: '600px' });
+    if (window.innerWidth < 767) {
+      setCanvasSize({ width: '450px', height: '450px' });
+    } else if (window.innerWidth < 1280) {
+      setCanvasSize({ width: '400px', height: '400px' });
+    } else {
+      setCanvasSize({ width: '600px', height: '600px' });
       }
     };
 
@@ -66,6 +66,7 @@ const ThreeModel = () => {
         stiffness: 200,
       }}
       style={{ width: canvasSize.width, height: canvasSize.height }}
+      className='justify-center mx-auto'
     >
       <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
         <ambientLight intensity={3}/>

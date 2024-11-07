@@ -20,9 +20,7 @@ const slides = [
   { icon: <FaPhp className="w-12 h-12" /> },
   { icon: <FaLaravel className="w-12 h-12" /> },
   { icon: <FaNodeJs className="w-12 h-12" /> },
-  ];
-
-
+];
 
 const IconSliderModel = () => {
     const duplicatedSlides = [...slides, ...slides];
