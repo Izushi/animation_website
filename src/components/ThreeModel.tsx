@@ -37,10 +37,10 @@ const ThreeModel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-    if (window.innerWidth < 767) {
-      setCanvasSize({ width: '450px', height: '450px' });
-    } else if (window.innerWidth < 1280) {
-      setCanvasSize({ width: '400px', height: '400px' });
+    if (window.innerWidth < 1024) {
+      setCanvasSize({ width: '420px', height: '450px' });
+    } else if (window.innerWidth < 1220) {
+      setCanvasSize({ width: '550px', height: '550px' });
     } else {
       setCanvasSize({ width: '600px', height: '600px' });
       }
@@ -72,7 +72,7 @@ const ThreeModel = () => {
         <ambientLight intensity={3}/>
         <Model
           url="/src/assets/models/scene.gltf"
-          scale={0.8}
+          scale={0.7}
           position={[0, -1.2, 1]}
           rotation={[Math.PI / 7, -Math.PI / 10, 0]}
         />

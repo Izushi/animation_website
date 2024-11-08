@@ -11,6 +11,12 @@ module.exports = {
       width: {
         '120': '30rem',
       },
+      transitionProperty: {
+        'transform': 'transform',
+      },
+      transform: {
+        'rotate-y-360': 'rotateY(360deg)',
+      },
     },
   },
   plugins: [],
