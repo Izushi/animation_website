@@ -1,7 +1,14 @@
+import { motion } from 'framer-motion';
+
 const SocialLinksProfileModel = () => {
     const buttonClass = "bg-gray-500 text-white py-2 px-3 rounded-md mb-2 font-bold text-sm hover:bg-teal-300 hover:text-black";
     return (
-        <div className="bg-gray-800 p-6 mx-auto w-80 md:w-64 lg:w-80 rounded-md">
+        // <div className="bg-gray-800 p-6 mx-auto w-80 md:w-64 lg:w-80 rounded-md hover:transition-transform hover:duration-1000 hover:transform hover:rotate-y-360">
+        <motion.div
+            className="bg-gray-800 p-6 mx-auto w-80 md:w-64 lg:w-80 rounded-md"
+            whileHover={{ rotateY: 180 }}
+            transition={{ duration: 1 }}
+        >
             <div className="flex flex-col items-center justify-center mb-5">
                 <img src="../../public/images/my_profile.JPG" alt="avatar-jessica" className="h-28 w-28 object-cover rounded-full mb-3" />
                 <h1 className="text-base mb-2 text-white">Daichi Izushi</h1>
@@ -13,7 +20,7 @@ const SocialLinksProfileModel = () => {
                 <a href="https://x.com/shoehead_id" target="_blank" rel="noopener noreferrer" className={buttonClass}>X</a>
                 <a href="https://www.instagram.com/i_brand_on/" target="_blank" rel="noopener noreferrer" className={buttonClass}>Instagram</a>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
