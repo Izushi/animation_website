@@ -81,7 +81,7 @@ function App() {
             <h2 className="text-4xl font-bold text-teal-300 mb-4">About</h2>
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-4">
-              <div className="text-center lg:w-1/3 md:w-1/3 transition-transform duration-1000 transform hover:rotate-y-360 mb-3">
+              <div className="text-center lg:w-1/3 md:w-1/3 mb-3">
                 {/* Social Links Profile */}
                 <SocialLinksProfileModel />
               </div>

@@ -6,16 +6,11 @@ module.exports = {
   theme: {
     extend: {
       height: {
+        '112': '26rem',
         '128': '32rem',
       },
       width: {
         '120': '30rem',
-      },
-      transitionProperty: {
-        'transform': 'transform',
-      },
-      transform: {
-        'rotate-y-360': 'rotateY(360deg)',
       },
     },
   },
