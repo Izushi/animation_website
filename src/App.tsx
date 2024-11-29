@@ -6,6 +6,7 @@ import ThreeModel from "./components/ThreeModel";
 import IconSliderModel from "./components/IconSliderModel";
 import SocialLinksProfileModel from "./components/SocialLinksProfileModel";
 import HeaderModel from "./components/HeaderModel";
+import Contact from "./components/Contact";
 
 function App() {
   const ref = useRef(null);
@@ -183,24 +184,7 @@ function App() {
 
         {/* Contact */}
         <section id="contact" className="py-20 bg-slate-900">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-teal-300 mb-4">Contact</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold text-white">Email</h3>
-                <p className="text-white">
-                  <a href="mailto:
-                  example@example.com" className="hover:text-teal-300 transition-colors duration-300">example@example.com</a>
-                </p>
-              </div>
-              <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold text-white">Phone</h3>
-                <p className="text-white">
-                <a href="tel:+1234567890" className="hover:text-teal-300 transition-colors duration-300">+1 (236) 000-0000</a>
-                </p>
-              </div>
-            </div>
-          </div>
+          <Contact />
         </section>
 
         {/* footer */}
