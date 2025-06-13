@@ -1,13 +1,14 @@
-import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type * as THREE from 'three';
 
 const Model = ({
   url,
   scale,
   position,
-  rotation
+  rotation,
 }: {
   url: string;
   scale: number;
@@ -33,16 +34,16 @@ const Model = ({
 const ThreeModel = () => {
   const ref = useRef(null);
   const is3DInView = useInView(ref);
-  const [canvasSize, setCanvasSize] = useState({width: '100%', height: '700px'});
+  const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
 
   useEffect(() => {
     const handleResize = () => {
-    if (window.innerWidth < 1024) {
-      setCanvasSize({ width: '420px', height: '450px' });
-    } else if (window.innerWidth < 1220) {
-      setCanvasSize({ width: '550px', height: '550px' });
-    } else {
-      setCanvasSize({ width: '600px', height: '600px' });
+      if (window.innerWidth < 1024) {
+        setCanvasSize({ width: '420px', height: '450px' });
+      } else if (window.innerWidth < 1220) {
+        setCanvasSize({ width: '550px', height: '550px' });
+      } else {
+        setCanvasSize({ width: '600px', height: '600px' });
       }
     };
 
@@ -66,10 +67,10 @@ const ThreeModel = () => {
         stiffness: 200,
       }}
       style={{ width: canvasSize.width, height: canvasSize.height }}
-      className='justify-center mx-auto'
+      className="justify-center mx-auto"
     >
       <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
-        <ambientLight intensity={3}/>
+        <ambientLight intensity={3} />
         <Model
           url="/src/assets/models/scene.gltf"
           scale={0.7}
@@ -82,4 +83,54 @@ const ThreeModel = () => {
   );
 };
 
+// 背景用の固定位置版のThreeModel
+const BackgroundThreeModel = ({
+  url,
+  scale = 0.3,
+  position = [0, -5, -10],
+  rotation = [Math.PI / 7, -Math.PI / 10, 0],
+  opacity = 0.4,
+}: {
+  url: string;
+  scale?: number;
+  position?: number[];
+  rotation?: number[];
+  opacity?: number;
+}) => {
+  const { scene } = useGLTF(url);
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    if (groupRef.current) {
+      // ゆっくりとした浮遊アニメーション
+      groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5) * 0.5;
+      // ゆっくりとした回転
+      groupRef.current.rotation.y += 0.002;
+    }
+  });
+
+  // モデルのマテリアルを透明化
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          const mesh = child as THREE.Mesh;
+          if (mesh.material) {
+            const material = mesh.material as THREE.Material;
+            material.transparent = true;
+            material.opacity = opacity;
+          }
+        }
+      });
+    }
+  }, [scene, opacity]);
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={scene} scale={scale} position={position} rotation={rotation} />
+    </group>
+  );
+};
+
 export default ThreeModel;
+export { BackgroundThreeModel };

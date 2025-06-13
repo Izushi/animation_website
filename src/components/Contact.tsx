@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 const Contact: React.FC = () => {
   const [firstName, setFirstName] = useState('');
@@ -28,9 +29,9 @@ const Contact: React.FC = () => {
     }
     if (!inquiry) newErrors.inquiry = 'Please select a query type';
     if (!message) newErrors.message = 'This field is required';
-    if (!consent) newErrors.consent = 'To submit this form, please consent to being contacted'
+    if (!consent) newErrors.consent = 'To submit this form, please consent to being contacted';
     return newErrors;
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,9 +39,8 @@ const Contact: React.FC = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log('Form submitted');
     }
-  }
+  };
 
   return (
     <form action="" onSubmit={handleSubmit}>
@@ -49,7 +49,9 @@ const Contact: React.FC = () => {
         <h2 className="text-4xl text-teal-300 mb-4">Contact Us</h2>
         <div className="flex flex-col md:flex-row space-x-0 md:space-x-4 mb-5">
           <div className="flex-1 mb-5 md:mb-0">
-            <label htmlFor="first_name" className="text-white">First Name <span className="text-teal-600">*</span></label>
+            <label htmlFor="first_name" className="text-white">
+              First Name <span className="text-teal-600">*</span>
+            </label>
             <input
               type="text"
               id="first_name"
@@ -57,10 +59,12 @@ const Contact: React.FC = () => {
               className={`w-full p-2 mt-2 rounded-md bg-slate-900 border text-white cursor-pointer ${errors.firstName ? 'border-red-500' : 'border-white'}`}
               onChange={(e) => setFirstName(e.target.value)}
             />
-            {errors.firstName && <p className='text-red-500 mt-2'>{errors.firstName}</p>}
+            {errors.firstName && <p className="text-red-500 mt-2">{errors.firstName}</p>}
           </div>
           <div className="flex-1">
-            <label htmlFor="last_name" className="text-white">Last Name <span className="text-teal-600">*</span></label>
+            <label htmlFor="last_name" className="text-white">
+              Last Name <span className="text-teal-600">*</span>
+            </label>
             <input
               type="text"
               id="last_name"
@@ -68,11 +72,13 @@ const Contact: React.FC = () => {
               className={`w-full p-2 mt-2 rounded-md bg-slate-900 border text-white cursor-pointer ${errors.lastName ? 'border-red-500' : 'border-white'}`}
               onChange={(e) => setLastName(e.target.value)}
             />
-            {errors.lastName && <p className='text-red-500 mt-2'>{errors.lastName}</p>}
+            {errors.lastName && <p className="text-red-500 mt-2">{errors.lastName}</p>}
           </div>
         </div>
         <div className="mb-5">
-          <label htmlFor="email" className="text-white">Email Address <span className="text-teal-600">*</span></label>
+          <label htmlFor="email" className="text-white">
+            Email Address <span className="text-teal-600">*</span>
+          </label>
           <input
             type="text"
             id="email"
@@ -80,62 +86,86 @@ const Contact: React.FC = () => {
             className={`w-full p-2 mt-2 rounded-md bg-slate-900 border text-white cursor-pointer ${errors.email ? 'border-red-500' : 'border-white'}`}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && <p className='text-red-500 mt-2'>{errors.email}</p>}
+          {errors.email && <p className="text-red-500 mt-2">{errors.email}</p>}
         </div>
         <div className="mb-5">
-          <span className="text-white">Query Type <span className="text-teal-600">*</span></span>
+          <span className="text-white">
+            Query Type <span className="text-teal-600">*</span>
+          </span>
           <div className="flex flex-col md:flex-row items-center mt-2 space-x-0 md:space-x-4">
-            <div className={`${errors.inquiry ? 'border-red-500' : 'border-white'} flex items-center bg-slate-900 w-full border p-2 rounded-md mb-3 md:mb-0`}>
+            <div
+              className={`${errors.inquiry ? 'border-red-500' : 'border-white'} flex items-center bg-slate-900 w-full border p-2 rounded-md mb-3 md:mb-0`}
+            >
               <input
                 type="radio"
                 id="general_inquiry"
                 name="inquiry_type"
                 value="general_inquiry"
                 className="mx-4 cursor-pointer w-5 h-5"
-                checked={inquiry === "general_inquiry"}
-                onChange={(e) => {setInquiry(e.target.value)}}
+                checked={inquiry === 'general_inquiry'}
+                onChange={(e) => {
+                  setInquiry(e.target.value);
+                }}
               />
-              <label htmlFor="general_inquiry" className="text-white cursor-pointer">General Inquiry</label>
+              <label htmlFor="general_inquiry" className="text-white cursor-pointer">
+                General Inquiry
+              </label>
             </div>
-            <div className={`${errors.inquiry ? 'border-red-500' : 'border-white'} flex items-center bg-slate-900 w-full border p-2 rounded-md`}>
+            <div
+              className={`${errors.inquiry ? 'border-red-500' : 'border-white'} flex items-center bg-slate-900 w-full border p-2 rounded-md`}
+            >
               <input
                 type="radio"
                 id="support_request"
                 name="inquiry_type"
                 value="support_request"
                 className="mx-4 cursor-pointer w-5 h-5"
-                checked={inquiry === "support_request"}
-                onChange={(e) => {setInquiry(e.target.value)}}
+                checked={inquiry === 'support_request'}
+                onChange={(e) => {
+                  setInquiry(e.target.value);
+                }}
               />
-              <label htmlFor="support_request" className="text-white cursor-pointer">Support Request</label>
+              <label htmlFor="support_request" className="text-white cursor-pointer">
+                Support Request
+              </label>
             </div>
           </div>
-          {errors.inquiry && <p className='text-red-500 mt-2'>{errors.inquiry}</p>}
+          {errors.inquiry && <p className="text-red-500 mt-2">{errors.inquiry}</p>}
         </div>
         <div className="mb-5">
-          <label htmlFor="message" className="text-white">Message <span className="text-teal-600">*</span></label>
+          <label htmlFor="message" className="text-white">
+            Message <span className="text-teal-600">*</span>
+          </label>
           <textarea
             name="message"
             id="message"
             className={`${errors.message ? 'border-red-500' : 'border-white'} w-full p-2 mt-2 rounded-md bg-slate-900 border text-white cursor-pointer`}
             rows={5}
             value={message}
-            onChange={(e) => {setMessage(e.target.value)}}
-          >
-          </textarea>
-          {errors.message && <p className='text-red-500 mt-2'>{errors.message}</p>}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+          />
+          {errors.message && <p className="text-red-500 mt-2">{errors.message}</p>}
         </div>
         <div className="mb-5">
           <input
             type="checkbox"
             id="consent"
             checked={consent}
-            onChange={(e) => {setConsent(e.target.checked)}}
+            onChange={(e) => {
+              setConsent(e.target.checked);
+            }}
           />
-          <label htmlFor="consent" className="text-white ml-4 cursor-pointer">I consent to being contacted by team <span className="text-teal-600">*</span></label>
-          {errors.consent && <p className='text-red-500 mt-2'>{errors.consent}</p>}
+          <label htmlFor="consent" className="text-white ml-4 cursor-pointer">
+            I consent to being contacted by team <span className="text-teal-600">*</span>
+          </label>
+          {errors.consent && <p className="text-red-500 mt-2">{errors.consent}</p>}
         </div>
-        <button className="w-full p-2 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150">
+        <button
+          type="submit"
+          className="w-full p-2 rounded-md border-2 my-4  border-teal-300 hover:translate-y-1 duration-150"
+        >
           <span className="font-bold text-teal-300 text-1xl">Submit</span>
         </button>
       </div>
