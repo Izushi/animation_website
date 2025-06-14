@@ -6,7 +6,10 @@ const ContactSection = () => {
     <section id="contact" className="py-32 px-6 relative">
       <div className="absolute inset-0 bg-slate-900/5 backdrop-blur-sm" />
       <div className="container mx-auto relative z-10">
-        <AnimatedText className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl">
+        <AnimatedText 
+          animation="fadeUp"
+          className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl"
+        >
           Get In Touch
         </AnimatedText>
         <div className="max-w-4xl mx-auto">

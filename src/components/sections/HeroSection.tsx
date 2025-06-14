@@ -9,29 +9,33 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/10 via-transparent to-teal-900/10" />
       {/* Glassmorphism floating cards */}
-      <div className="absolute top-20 left-10 w-64 h-32 bg-gradient-to-r from-teal-400/10 to-cyan-500/10 backdrop-blur-md rounded-2xl border border-teal-300/20 shadow-2xl animate-pulse" />
       <div className="absolute bottom-32 right-16 w-48 h-24 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 backdrop-blur-md rounded-2xl border border-cyan-300/20 shadow-2xl animate-pulse delay-1000" />
       <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-gradient-to-r from-teal-300/10 to-emerald-400/10 backdrop-blur-md rounded-full border border-teal-300/20 shadow-2xl animate-bounce" />
 
       <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           {/* Left side - Text content */}
           <div className="text-center lg:text-left">
-            <AnimatedText className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 drop-shadow-2xl bg-gradient-to-r from-white via-teal-100 to-cyan-200 bg-clip-text text-transparent">
+            <AnimatedText 
+              animation="scale"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 drop-shadow-2xl bg-gradient-to-r from-white via-teal-100 to-cyan-200 bg-clip-text text-transparent"
+            >
               I'm a{' '}
               <span className="text-teal-300 bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">
                 Web Developer
               </span>
             </AnimatedText>
             <AnimatedText
-              delay={300}
+              animation="fadeLeft"
+              delay={400}
               className="text-xl md:text-2xl lg:text-3xl font-semibold mb-12 drop-shadow-xl"
             >
               Building the <span className="text-teal-300 drop-shadow-lg">Digital Economy</span>,
               One Innovation at a Time
             </AnimatedText>
             <AnimatedText
-              delay={600}
+              animation="bounce"
+              delay={800}
               className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
             >
               <button
@@ -52,8 +56,8 @@ const HeroSection = () => {
           </div>
 
           {/* Right side - ThreeModel */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-md lg:max-w-lg">
+          <div className="flex justify-center lg:justify-start">
+            <div className="w-full max-w-sm lg:max-w-md">
               <ThreeModel />
             </div>
           </div>

@@ -5,7 +5,10 @@ const ExperienceSection = () => {
     <section id="experience" className="py-32 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-r from-teal-900/5 via-transparent to-cyan-900/5" />
       <div className="container mx-auto relative z-10">
-        <AnimatedText className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl">
+        <AnimatedText 
+          animation="fadeRight"
+          className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl"
+        >
           Experience
         </AnimatedText>
         <AnimatedText
