@@ -6,7 +6,7 @@ const ContactSection = () => {
     <section id="contact" className="py-32 px-6 relative">
       <div className="absolute inset-0 bg-slate-900/5 backdrop-blur-sm" />
       <div className="container mx-auto relative z-10">
-        <AnimatedText 
+        <AnimatedText
           animation="fadeUp"
           className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl"
         >
@@ -29,15 +29,15 @@ const ContactSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <Mail className="w-6 h-6 text-teal-300" />
-                    <span>your.email@example.com</span>
+                    <span>d.izushi@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <Phone className="w-6 h-6 text-teal-300" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+1 (236) 995-8601</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <MapPin className="w-6 h-6 text-teal-300" />
-                    <span>Tokyo, Japan</span>
+                    <span>Vancouver, Canada</span>
                   </div>
                 </div>
               </div>

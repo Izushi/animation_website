@@ -16,7 +16,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
           {/* Left side - Text content */}
           <div className="text-center lg:text-left">
-            <AnimatedText 
+            <AnimatedText
               animation="scale"
               className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 drop-shadow-2xl bg-gradient-to-r from-white via-teal-100 to-cyan-200 bg-clip-text text-transparent"
             >

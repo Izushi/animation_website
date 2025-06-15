@@ -6,7 +6,7 @@ const SkillsSection = () => {
     <section id="skills" className="py-32 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/5 to-transparent" />
       <div className="container mx-auto relative z-10">
-        <AnimatedText 
+        <AnimatedText
           animation="bounce"
           className="text-5xl font-bold text-teal-300 mb-16 text-center drop-shadow-2xl"
         >
