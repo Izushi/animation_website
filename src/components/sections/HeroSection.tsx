@@ -1,7 +1,19 @@
+import { Suspense, lazy } from 'react';
 import AnimatedText from '../AnimatedText';
-import ThreeModel from '../ThreeModel';
+
+// 動的インポートでコード分割
+const ThreeModel = lazy(() => import('../ThreeModel'));
 
 const HeroSection = () => {
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/Daichi_Resume.pdf';
+    link.download = 'Daichi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section
       id="home"
@@ -40,6 +52,7 @@ const HeroSection = () => {
             >
               <button
                 type="button"
+                onClick={handleResumeDownload}
                 className="group px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl text-xl font-bold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 drop-shadow-xl relative overflow-hidden"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-cyan-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
@@ -55,10 +68,18 @@ const HeroSection = () => {
             </AnimatedText>
           </div>
 
-          {/* Right side - ThreeModel */}
+          {/* Right side - ThreeModel with Suspense */}
           <div className="flex justify-center lg:justify-start">
             <div className="w-full max-w-sm lg:max-w-md">
-              <ThreeModel />
+              <Suspense 
+                fallback={
+                  <div className="w-64 h-64 bg-gradient-to-br from-teal-500/20 to-cyan-600/20 rounded-full flex items-center justify-center border border-teal-300/30 animate-pulse">
+                    <span className="text-teal-300 text-sm font-semibold">Loading 3D Model...</span>
+                  </div>
+                }
+              >
+                <ThreeModel />
+              </Suspense>
             </div>
           </div>
         </div>

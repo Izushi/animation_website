@@ -35,6 +35,7 @@ const ThreeModel = () => {
   const ref = useRef(null);
   const is3DInView = useInView(ref);
   const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,6 +56,16 @@ const ThreeModel = () => {
     };
   }, []);
 
+  if (hasError) {
+    return (
+      <div className="w-64 h-64 bg-gradient-to-br from-red-500/20 to-orange-600/20 rounded-full flex items-center justify-center border border-red-300/30">
+        <span className="text-red-300 text-sm font-semibold text-center">
+          3D Model<br />Loading Failed
+        </span>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -69,10 +80,13 @@ const ThreeModel = () => {
       style={{ width: canvasSize.width, height: canvasSize.height }}
       className="justify-center mx-auto"
     >
-      <Canvas camera={{ position: [0, 0, 15], fov: 30 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 15], fov: 30 }}
+        onError={() => setHasError(true)}
+      >
         <ambientLight intensity={3} />
         <Model
-          url="/src/assets/models/scene.gltf"
+          url="/assets/models/scene.gltf"
           scale={0.7}
           position={[0, -1.2, 1]}
           rotation={[Math.PI / 7, -Math.PI / 10, 0]}
