@@ -317,9 +317,23 @@ const ExperienceSection = () => {
               {/* Experience Header */}
               <div className="pt-6 pb-6 px-6 bg-gradient-to-r from-teal-600/20 to-cyan-600/20">
                 <div className="flex flex-col items-center">
-                  <div className="w-28 h-28 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center mb-4 shadow-xl">
-                    <Briefcase className="w-10 h-10 text-white" />
-                  </div>
+                  {activeTab === 'current' ? (
+                    <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-teal-300/50 shadow-xl mb-4">
+                      <img
+                        src="/images/current-profile.jpg"
+                        alt="Current Position"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-blue-300/50 shadow-xl mb-4">
+                      <img
+                        src="/images/prev-profile.jpg"
+                        alt="Previous Experience"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <h3 className="text-3xl font-bold text-white mb-2">Work Experience</h3>
                   <p className="text-teal-300 font-medium text-lg">
                     {activeTab === 'current' ? 'Current Position' : 'Previous Experience'}
