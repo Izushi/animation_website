@@ -303,7 +303,7 @@ const AboutSection = () => {
                   <div>
                     <h5 className="text-sm font-semibold text-gray-300 mb-2">Backend</h5>
                     <div className="flex flex-wrap gap-2">
-                      {['Golang', 'Node.js', 'PHP', 'Python', 'Express', 'REST API'].map((tech) => (
+                      {['Golang', 'Node.js', 'PHP', 'Express', 'REST API'].map((tech) => (
                         <span
                           key={tech}
                           className="px-3 py-1 bg-green-400/20 text-green-200 rounded-full text-sm font-medium"

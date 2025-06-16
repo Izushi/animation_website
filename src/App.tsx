@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Footer from './components/Footer';
+import ModernBackground from './components/ModernBackground';
 import Navigation from './components/Navigation';
-// import ThreeBackground from './components/ThreeBackground';
 import AboutSection from './components/sections/AboutSection';
 import ContactSection from './components/sections/ContactSection';
 import ExperienceSection from './components/sections/ExperienceSection';
@@ -35,8 +35,8 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br text-white overflow-x-hidden bg-slate-900/60 border-teal-300/20">
-      {/* <ThreeBackground /> */}
+    <div className="min-h-screen text-white overflow-x-hidden">
+      <ModernBackground />
 
       <Navigation activeSection={activeSection} scrollToSection={scrollToSection} />
 

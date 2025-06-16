@@ -71,7 +71,7 @@ const HeroSection = () => {
           {/* Right side - ThreeModel with Suspense */}
           <div className="flex justify-center lg:justify-start">
             <div className="w-full max-w-sm lg:max-w-md">
-              <Suspense 
+              <Suspense
                 fallback={
                   <div className="w-64 h-64 bg-gradient-to-br from-teal-500/20 to-cyan-600/20 rounded-full flex items-center justify-center border border-teal-300/30 animate-pulse">
                     <span className="text-teal-300 text-sm font-semibold">Loading 3D Model...</span>

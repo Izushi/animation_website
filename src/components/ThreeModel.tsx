@@ -36,6 +36,7 @@ const ThreeModel = () => {
   const is3DInView = useInView(ref);
   const [canvasSize, setCanvasSize] = useState({ width: '100%', height: '700px' });
   const [hasError, setHasError] = useState(false);
+  const [showInteractionHint, setShowInteractionHint] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,7 +61,9 @@ const ThreeModel = () => {
     return (
       <div className="w-64 h-64 bg-gradient-to-br from-red-500/20 to-orange-600/20 rounded-full flex items-center justify-center border border-red-300/30">
         <span className="text-red-300 text-sm font-semibold text-center">
-          3D Model<br />Loading Failed
+          3D Model
+          <br />
+          Loading Failed
         </span>
       </div>
     );
@@ -78,12 +81,9 @@ const ThreeModel = () => {
         stiffness: 200,
       }}
       style={{ width: canvasSize.width, height: canvasSize.height }}
-      className="justify-center mx-auto"
+      className="justify-center mx-auto relative"
     >
-      <Canvas 
-        camera={{ position: [0, 0, 15], fov: 30 }}
-        onError={() => setHasError(true)}
-      >
+      <Canvas camera={{ position: [0, 0, 15], fov: 30 }} onError={() => setHasError(true)}>
         <ambientLight intensity={3} />
         <Model
           url="/assets/models/scene.gltf"
@@ -91,13 +91,25 @@ const ThreeModel = () => {
           position={[0, -1.2, 1]}
           rotation={[Math.PI / 7, -Math.PI / 10, 0]}
         />
-        <OrbitControls enableZoom={false} />
+        <OrbitControls enableZoom={false} onStart={() => setShowInteractionHint(false)} />
       </Canvas>
+
+      {showInteractionHint && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 pointer-events-none">
+          <div className="bg-gradient-to-r from-teal-500/20 to-cyan-500/20 backdrop-blur-sm border-2 border-teal-300/30 rounded-2xl px-4 py-2 shadow-xl animate-bounce">
+            <div className="flex items-center gap-2 text-sm text-teal-300 font-semibold">
+              <div className="w-6 h-6 bg-teal-400/20 rounded-full flex items-center justify-center animate-pulse">
+                <span className="text-xs">🖱️</span>
+              </div>
+              <span>Drag to rotate</span>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
 
-// 背景用の固定位置版のThreeModel
 const BackgroundThreeModel = ({
   url,
   scale = 0.3,
@@ -116,14 +128,11 @@ const BackgroundThreeModel = ({
 
   useFrame((state) => {
     if (groupRef.current) {
-      // ゆっくりとした浮遊アニメーション
       groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5) * 0.5;
-      // ゆっくりとした回転
       groupRef.current.rotation.y += 0.002;
     }
   });
 
-  // モデルのマテリアルを透明化
   useEffect(() => {
     if (scene) {
       scene.traverse((child) => {

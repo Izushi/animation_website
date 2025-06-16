@@ -1,4 +1,14 @@
-import { Briefcase, Building, Clock, Code, FileText, Folder, Star, Terminal } from 'lucide-react';
+import {
+  AlertCircle,
+  Briefcase,
+  Building,
+  Clock,
+  Code,
+  FileText,
+  Folder,
+  Star,
+  Terminal,
+} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedText from '../AnimatedText';
 
@@ -11,7 +21,9 @@ const ExperienceSection = () => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [activeTab, setActiveTab] = useState<'current' | 'previous'>('current');
+  const [showHoverMessage, setShowHoverMessage] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<number | null>(null);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -51,6 +63,14 @@ const ExperienceSection = () => {
     }
   }, [terminalHistory]);
 
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section id="experience" className="py-32 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-r from-teal-900/5 via-transparent to-cyan-900/5" />
@@ -65,7 +85,24 @@ const ExperienceSection = () => {
         <div className="max-w-4xl mx-auto">
           {/* VSCode Style Editor */}
           <AnimatedText delay={200} className="w-full">
-            <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-2xl border border-teal-300/30 shadow-2xl overflow-hidden">
+            <div
+              className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl rounded-2xl border border-teal-300/30 shadow-2xl overflow-hidden relative group cursor-pointer"
+              onMouseEnter={() => {
+                if (hoverTimeoutRef.current) {
+                  clearTimeout(hoverTimeoutRef.current);
+                }
+                hoverTimeoutRef.current = window.setTimeout(() => {
+                  setShowHoverMessage(true);
+                }, 400);
+              }}
+              onMouseLeave={() => {
+                if (hoverTimeoutRef.current) {
+                  clearTimeout(hoverTimeoutRef.current);
+                  hoverTimeoutRef.current = null;
+                }
+                setShowHoverMessage(false);
+              }}
+            >
               {/* VSCode Title Bar */}
               <div className="flex items-center justify-between p-3 bg-slate-700/80 border-b border-slate-600/50">
                 <div className="flex space-x-2">
@@ -182,6 +219,10 @@ const ExperienceSection = () => {
                     <div className="flex items-center gap-2 px-3 py-1 bg-slate-700/60 border-b border-slate-600/50">
                       <Terminal className="w-4 h-4 text-green-400" />
                       <span className="text-xs text-gray-300 font-mono">Terminal</span>
+                      <div className="flex-1" />
+                      <div className="bg-gradient-to-r from-pink-500/30 to-purple-500/30 px-3 py-1 rounded-full text-xs font-bold text-pink-200 animate-pulse border border-pink-400/30">
+                        ✨ Type: npm run dev
+                      </div>
                     </div>
                     <div
                       ref={terminalRef}
@@ -215,6 +256,48 @@ const ExperienceSection = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Hover Message Popup */}
+              {showHoverMessage && (
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
+                  <div className="bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 backdrop-blur-sm border-2 border-transparent bg-clip-padding rounded-2xl p-4 shadow-2xl relative overflow-hidden max-w-sm animate-in fade-in-0 zoom-in-90 duration-1000 transition-all ease-in-out">
+                    {/* Animated background elements */}
+                    <div className="absolute top-0 left-0 w-full h-full">
+                      <div className="absolute top-1 left-2 w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-100" />
+                      <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce delay-300" />
+                      <div className="absolute bottom-2 left-4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce delay-500" />
+                      <div className="absolute bottom-1 right-2 w-2 h-2 bg-green-400 rounded-full animate-bounce delay-700" />
+                    </div>
+
+                    <div className="relative z-10 flex items-center gap-3">
+                      <div className="relative">
+                        <AlertCircle className="w-6 h-6 text-yellow-400 animate-pulse" />
+                        <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full animate-ping" />
+                      </div>
+
+                      <div className="flex-1">
+                        <p className="text-lg font-bold bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 bg-clip-text text-transparent mb-1">
+                          Interactive Mode Locked!
+                        </p>
+                        <div className="flex flex-wrap items-center gap-1 text-xs">
+                          <span className="text-yellow-300 font-semibold">✨ Run</span>
+                          <code className="bg-black/50 px-2 py-0.5 rounded font-mono text-green-300 border border-green-400/30 text-xs">
+                            npm run dev
+                          </code>
+                          <span className="text-yellow-300 font-semibold">to unlock! 🚀</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full shadow-lg">
+                        <span className="text-white font-bold text-xs">🎯 Try it!</span>
+                      </div>
+                    </div>
+
+                    {/* Gradient border effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-75 -z-10 blur-sm" />
+                  </div>
+                </div>
+              )}
             </div>
           </AnimatedText>
         </div>
