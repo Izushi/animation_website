@@ -40,8 +40,14 @@ const ThreeModel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setCanvasSize({ width: '420px', height: '450px' });
+      if (window.innerWidth < 375) {
+        setCanvasSize({ width: '280px', height: '350px' });
+      } else if (window.innerWidth < 480) {
+        setCanvasSize({ width: '320px', height: '400px' });
+      } else if (window.innerWidth < 640) {
+        setCanvasSize({ width: '380px', height: '450px' });
+      } else if (window.innerWidth < 1024) {
+        setCanvasSize({ width: '420px', height: '500px' });
       } else if (window.innerWidth < 1220) {
         setCanvasSize({ width: '550px', height: '550px' });
       } else {
@@ -59,8 +65,8 @@ const ThreeModel = () => {
 
   if (hasError) {
     return (
-      <div className="w-64 h-64 bg-gradient-to-br from-red-500/20 to-orange-600/20 rounded-full flex items-center justify-center border border-red-300/30">
-        <span className="text-red-300 text-sm font-semibold text-center">
+      <div className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 bg-gradient-to-br from-red-500/20 to-orange-600/20 rounded-full flex items-center justify-center border border-red-300/30 mx-auto">
+        <span className="text-red-300 text-xs sm:text-sm font-semibold text-center px-4">
           3D Model
           <br />
           Loading Failed
@@ -81,7 +87,7 @@ const ThreeModel = () => {
         stiffness: 200,
       }}
       style={{ width: canvasSize.width, height: canvasSize.height }}
-      className="justify-center mx-auto relative"
+      className="mx-auto relative flex justify-center items-center"
     >
       <Canvas camera={{ position: [0, 0, 15], fov: 30 }} onError={() => setHasError(true)}>
         <ambientLight intensity={3} />
